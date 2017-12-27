@@ -1,4 +1,4 @@
-//¶ÁÈëÍ¼Æ¬²¢½øĞĞÏÔÊ¾  
+//è¯»å…¥å›¾ç‰‡å¹¶è¿›è¡Œæ˜¾ç¤º  
 #include <vector>
 #include <pcl\io\pcd_io.h>  
 #include <pcl\io\ply_io.h>
@@ -19,7 +19,7 @@ int main()
 	cv::Directory dir;
 	vector<string> number_path = dir.GetListFiles(dir_path, "*.png", true);
 
-	// Ñ­»·´¦ÀíÍ¼Ïñ
+	// å¾ªç¯å¤„ç†å›¾åƒ
 	for(int k =6;k<number_path.size();k++)
 	{
 		cv::Mat srcImage = cv::imread(number_path.at(k));
@@ -27,32 +27,32 @@ int main()
 		cv::cvtColor(srcImage, grayImage, CV_BGR2GRAY);
 		cv::Mat Binary_Image;
 		cv::threshold(grayImage, Binary_Image, 50, 255, cv::THRESH_BINARY_INV);
-		// opencv ÖĞµÄ sum º¯ÊıÊÇ¶Ô¸÷¸öÍ¨µÀ·Ö±ğ½øĞĞÇóºÍ²Ù×÷
+		// opencv ä¸­çš„ sum å‡½æ•°æ˜¯å¯¹å„ä¸ªé€šé“åˆ†åˆ«è¿›è¡Œæ±‚å’Œæ“ä½œ
 		cv::Scalar s = cv::sum(Binary_Image);
-		// µÚ0Í¨µÀµÃµ½µÄºÍ³ıÒÔ 255 µÄ½á¹ûÒ²¾ÍÊÇÓĞÒâÒåµÄµã
+		// ç¬¬0é€šé“å¾—åˆ°çš„å’Œé™¤ä»¥ 255 çš„ç»“æœä¹Ÿå°±æ˜¯æœ‰æ„ä¹‰çš„ç‚¹
 		unsigned int image_point_size = s[0] / 255;
 
-		// ÔÙ¶ÔÍ¼Ïñ½øĞĞ±éÀú£¬Èç¹ûÊÇºÚÉ«ÇøÓò£¬±£Áôºá×İ×ø±ê
-		// È»ºóÔÚ·ÅÈë PCL ¶ÔÏàÓ¦µãÔÆ½øĞĞ¸³Öµ²¢±£´æµÄ²Ù×÷
+		// å†å¯¹å›¾åƒè¿›è¡Œéå†ï¼Œå¦‚æœæ˜¯é»‘è‰²åŒºåŸŸï¼Œä¿ç•™æ¨ªçºµåæ ‡
+		// ç„¶ååœ¨æ”¾å…¥ PCL å¯¹ç›¸åº”ç‚¹äº‘è¿›è¡Œèµ‹å€¼å¹¶ä¿å­˜çš„æ“ä½œ
 
 		pcl::PointCloud<pcl::PointXYZ>::Ptr number_PC(new pcl::PointCloud<pcl::PointXYZ>);
 
 		// Fill in the cloud data  
-		// height = 1 ±íÊ¾µÄÊÇÎŞĞòµãÔÆ
+		// height = 1 è¡¨ç¤ºçš„æ˜¯æ— åºç‚¹äº‘
 		number_PC->width = image_point_size * 15;
 		number_PC->height = 1;
 		number_PC->points.resize(number_PC->width * number_PC->height);
 		for (size_t i = 0; i < number_PC->points.size();)
 		{
-			for (size_t m = 0; m < 15; m++)		// m±éÀúµÄÊÇ z ·½ÏòµÄ×ø±ê
+			for (size_t m = 0; m < 15; m++)		// méå†çš„æ˜¯ z æ–¹å‘çš„åæ ‡
 			{
-				// ÄÚ²ã±éÀúÍ¼ÏñËùÓĞÏñËØ£¬Èç¹û²»ÊÇ 0 ½«×ø±ê½øĞĞ´æ´¢
+				// å†…å±‚éå†å›¾åƒæ‰€æœ‰åƒç´ ï¼Œå¦‚æœä¸æ˜¯ 0 å°†åæ ‡è¿›è¡Œå­˜å‚¨
 				for (int a = 0; a < Binary_Image.rows; a = a++)
 				{
 					for (int b = 0; b < Binary_Image.cols; b = b++)
 					{
-						cout << "ÕıÔÚ½øĞĞµÚ "<<k+1<<" ÕÅÍ¼ÏñµÄµÚ " << m+1 << " ²ã£¬" << a << " ĞĞ " << b << " ÁĞ£¬" ;
-						cout << "×Ü½ø¶ÈÕıÔÚÍê³É " << k+1 << "/10 "<< endl;
+						cout << "æ­£åœ¨è¿›è¡Œç¬¬ "<<k+1<<" å¼ å›¾åƒçš„ç¬¬ " << m+1 << " å±‚ï¼Œ" << a << " è¡Œ " << b << " åˆ—ï¼Œ" ;
+						cout << "æ€»è¿›åº¦æ­£åœ¨å®Œæˆ " << k+1 << "/10 "<< endl;
 						if (Binary_Image.at<uchar>(a, b) != 0)
 						{
 							number_PC->points[i].x = b;
@@ -70,13 +70,13 @@ int main()
 			}
 		}
 
-		// ÏÔÊ¾µãÔÆ
+		// æ˜¾ç¤ºç‚¹äº‘
 		/*boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer(new pcl::visualization::PCLVisualizer("PCL"));
 		viewer->setBackgroundColor(255, 255, 255);
 		pcl::visualization::PointCloudGeometryHandlerXYZ<pcl::PointXYZ>color(number_PC);
 		viewer->addPointCloud<pcl::PointXYZ>(number_PC, color, "src_ruler");*/
 		string save_pathh = "F:\\AppData\\vs2015\\PCL\\NumberCloud\\NumberCloud\\number_PointCloud\\";
-		pcl::io::savePLYFileASCII(save_pathh + to_string(k) + ".ply", *number_PC); //½«µãÔÆ±£´æµ½PCDÎÄ¼şÖĞ
+		pcl::io::savePLYFileASCII(save_pathh + to_string(k) + ".ply", *number_PC); //å°†ç‚¹äº‘ä¿å­˜åˆ°PCDæ–‡ä»¶ä¸­
 
 
 
