@@ -1,0 +1,5 @@
+﻿  NumberCloud.cpp
+f:\appdata\vs2015\pcl\numbercloud\numbercloud\numbercloud.cpp(18): warning C4018: “<”: 有符号/无符号不匹配
+f:\appdata\vs2015\pcl\numbercloud\numbercloud\numbercloud.cpp(14): warning C4101: “dir”: 未引用的局部变量
+  NumberCloud.vcxproj -> F:\AppData\vs2015\PCL\NumberCloud\Debug\NumberCloud.exe
+  NumberCloud.vcxproj -> F:\AppData\vs2015\PCL\NumberCloud\Debug\NumberCloud.pdb (Partial PDB)

@@ -1,0 +1,69 @@
+﻿  NumberCloud.cpp
+e:\app\pcl\include\pcl-1.8\pcl\point_traits.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+e:\app\pcl\include\pcl-1.8\pcl\visualization\interactor_style.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+e:\app\pcl\include\pcl-1.8\pcl\visualization\pcl_visualizer.h(1071): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+e:\app\pcl\include\pcl-1.8\pcl\visualization\pcl_visualizer.h(1612): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+f:\appdata\vs2015\pcl\numbercloud\numbercloud\numbercloud.cpp(19): warning C4101: “dir”: 未引用的局部变量
+e:\app\microsoft visual studio 14.0\vc\include\xmemory(102): warning C4996: 'std::uninitialized_copy::_Unchecked_iterators::_Deprecate': Call to 'std::uninitialized_copy' with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+  e:\app\microsoft visual studio 14.0\vc\include\xmemory(102): note: 参见“std::uninitialized_copy::_Unchecked_iterators::_Deprecate”的声明
+  e:\app\pcl\3rdparty\boost\include\boost-1_61\boost\signals2\detail\auto_buffer.hpp(191): note: 参见对正在编译的函数 模板 实例化“_FwdIt *std::uninitialized_copy<I,boost::shared_ptr<void>*>(_InIt,_InIt,_FwdIt)”的引用
+          with
+          [
+              _FwdIt=boost::shared_ptr<void> *,
+              I=boost::shared_ptr<void> *,
+              _InIt=boost::shared_ptr<void> *
+          ]
+  e:\app\pcl\3rdparty\boost\include\boost-1_61\boost\signals2\detail\auto_buffer.hpp(178): note: 参见对正在编译的函数 模板 实例化“void boost::signals2::detail::auto_buffer<boost::shared_ptr<void>,boost::signals2::detail::store_n_objects<10>,boost::signals2::detail::default_grow_policy,std::allocator<T>>::copy_rai<I,false>(I,I,boost::shared_ptr<void> *,const boost::integral_constant<bool,false> &)”的引用
+          with
+          [
+              T=boost::shared_ptr<void>,
+              I=boost::shared_ptr<void> *
+          ]
+  e:\app\pcl\3rdparty\boost\include\boost-1_61\boost\signals2\detail\auto_buffer.hpp(178): note: 参见对正在编译的函数 模板 实例化“void boost::signals2::detail::auto_buffer<boost::shared_ptr<void>,boost::signals2::detail::store_n_objects<10>,boost::signals2::detail::default_grow_policy,std::allocator<T>>::copy_rai<I,false>(I,I,boost::shared_ptr<void> *,const boost::integral_constant<bool,false> &)”的引用
+          with
+          [
+              T=boost::shared_ptr<void>,
+              I=boost::shared_ptr<void> *
+          ]
+  e:\app\pcl\3rdparty\boost\include\boost-1_61\boost\signals2\detail\auto_buffer.hpp(204): note: 参见对正在编译的函数 模板 实例化“void boost::signals2::detail::auto_buffer<boost::shared_ptr<void>,boost::signals2::detail::store_n_objects<10>,boost::signals2::detail::default_grow_policy,std::allocator<T>>::copy_impl<I>(I,I,boost::shared_ptr<void> *,std::random_access_iterator_tag)”的引用
+          with
+          [
+              T=boost::shared_ptr<void>,
+              I=boost::shared_ptr<void> *
+          ]
+  e:\app\pcl\3rdparty\boost\include\boost-1_61\boost\signals2\detail\auto_buffer.hpp(203): note: 参见对正在编译的函数 模板 实例化“void boost::signals2::detail::auto_buffer<boost::shared_ptr<void>,boost::signals2::detail::store_n_objects<10>,boost::signals2::detail::default_grow_policy,std::allocator<T>>::copy_impl<I>(I,I,boost::shared_ptr<void> *,std::random_access_iterator_tag)”的引用
+          with
+          [
+              T=boost::shared_ptr<void>,
+              I=boost::shared_ptr<void> *
+          ]
+  e:\app\pcl\3rdparty\boost\include\boost-1_61\boost\signals2\detail\auto_buffer.hpp(296): note: 参见对正在编译的函数 模板 实例化“void boost::signals2::detail::auto_buffer<boost::shared_ptr<void>,boost::signals2::detail::store_n_objects<10>,boost::signals2::detail::default_grow_policy,std::allocator<T>>::copy_impl<boost::shared_ptr<void>*>(I,I,boost::shared_ptr<void> *)”的引用
+          with
+          [
+              T=boost::shared_ptr<void>,
+              I=boost::shared_ptr<void> *
+          ]
+  e:\app\pcl\3rdparty\boost\include\boost-1_61\boost\signals2\detail\auto_buffer.hpp(296): note: 参见对正在编译的函数 模板 实例化“void boost::signals2::detail::auto_buffer<boost::shared_ptr<void>,boost::signals2::detail::store_n_objects<10>,boost::signals2::detail::default_grow_policy,std::allocator<T>>::copy_impl<boost::shared_ptr<void>*>(I,I,boost::shared_ptr<void> *)”的引用
+          with
+          [
+              T=boost::shared_ptr<void>,
+              I=boost::shared_ptr<void> *
+          ]
+  e:\app\pcl\3rdparty\boost\include\boost-1_61\boost\signals2\detail\auto_buffer.hpp(294): note: 编译类 模板 成员函数“boost::shared_ptr<void> *boost::signals2::detail::auto_buffer<boost::shared_ptr<void>,boost::signals2::detail::store_n_objects<10>,boost::signals2::detail::default_grow_policy,std::allocator<T>>::move_to_new_buffer(unsigned __int64,const boost::true_type &)”时
+          with
+          [
+              T=boost::shared_ptr<void>
+          ]
+  e:\app\pcl\3rdparty\boost\include\boost-1_61\boost\signals2\detail\auto_buffer.hpp(302): note: 参见对正在编译的函数 模板 实例化“boost::shared_ptr<void> *boost::signals2::detail::auto_buffer<boost::shared_ptr<void>,boost::signals2::detail::store_n_objects<10>,boost::signals2::detail::default_grow_policy,std::allocator<T>>::move_to_new_buffer(unsigned __int64,const boost::true_type &)”的引用
+          with
+          [
+              T=boost::shared_ptr<void>
+          ]
+  e:\app\pcl\3rdparty\boost\include\boost-1_61\boost\signals2\connection.hpp(53): note: 参见对正在编译的类 模板 实例化“boost::signals2::detail::auto_buffer<boost::shared_ptr<void>,boost::signals2::detail::store_n_objects<10>,boost::signals2::detail::default_grow_policy,std::allocator<T>>”的引用
+          with
+          [
+              T=boost::shared_ptr<void>
+          ]
+  e:\app\pcl\3rdparty\boost\include\boost-1_61\boost\signals2\connection.hpp(55): note: 参见对正在编译的类 模板 实例化“boost::signals2::detail::garbage_collecting_lock<Mutex>”的引用
+  NumberCloud.vcxproj -> F:\AppData\vs2015\PCL\NumberCloud\x64\Debug\NumberCloud.exe
+  NumberCloud.vcxproj -> F:\AppData\vs2015\PCL\NumberCloud\x64\Debug\NumberCloud.pdb (Partial PDB)
