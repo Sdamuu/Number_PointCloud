@@ -27,7 +27,7 @@ int main()
 		cv::cvtColor(srcImage, grayImage, CV_BGR2GRAY);
 		cv::Mat Binary_Image;
 		cv::threshold(grayImage, Binary_Image, 50, 255, cv::THRESH_BINARY_INV);
-		// opencv 中的 sum 函数是对各个函数分别进行求和操作
+		// opencv 中的 sum 函数是对各个通道分别进行求和操作
 		cv::Scalar s = cv::sum(Binary_Image);
 		// 第0通道得到的和除以 255 的结果也就是有意义的点
 		unsigned int image_point_size = s[0] / 255;
