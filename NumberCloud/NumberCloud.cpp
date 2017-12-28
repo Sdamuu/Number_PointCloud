@@ -19,7 +19,7 @@ int main()
 	vector<string> number_path = dir.GetListFiles(dir_path, "*.png", true);
 
 	// 循环处理图像
-	for(int k =6;k<number_path.size();k++)
+	for(int k =5;k<number_path.size();k++)
 	{
 		cv::Mat srcImage = cv::imread(number_path.at(k));
 		cv::Mat grayImage;
