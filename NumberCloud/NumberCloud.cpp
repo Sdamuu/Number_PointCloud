@@ -94,13 +94,132 @@ int main()
 
 #pragma endregion Region_1
 
-	// 读取点云并显示
-	pcl::PointCloud<pcl::PointXYZ>::Ptr number_PC(new pcl::PointCloud<pcl::PointXYZ>);
-	pcl::io::loadPLYFile("8.ply", *number_PC);
 
-	pcl::PointCloud<pcl::PointXYZ>::Ptr number_PC1(new pcl::PointCloud<pcl::PointXYZ>);
-	pcl::io::loadPCDFile("ruler_filtered_8 - Cloud.pcd", *number_PC1);
-	cout << number_PC1->points.size() << endl;
+#pragma region 处理生成点云
+//	// 读取点云并显示
+//	pcl::PointCloud<pcl::PointXYZ>::Ptr number_PC(new pcl::PointCloud<pcl::PointXYZ>);
+//	pcl::io::loadPLYFile("8.ply", *number_PC);
+//
+//	pcl::PointCloud<pcl::PointXYZ>::Ptr number_PC1(new pcl::PointCloud<pcl::PointXYZ>);
+//	pcl::io::loadPCDFile("ruler_filtered_8 - Cloud.pcd", *number_PC1);
+//	cout << number_PC1->points.size() << endl;
+//
+//	// 获取到 RGB 信息
+//	pcl::PointCloud<pcl::PointXYZRGB>::Ptr number_RGB_XYZ(new pcl::PointCloud<pcl::PointXYZRGB>);
+//	number_RGB_XYZ->width = number_PC->width;
+//	number_RGB_XYZ->height = number_PC->height;
+//	number_RGB_XYZ->resize(number_PC->width * number_PC->height);
+//
+//	// 将所有点改为蓝色
+//	for (size_t i = 0; i < number_RGB_XYZ->size(); i++)
+//	{
+//		number_RGB_XYZ->points[i].x = number_PC->points[i].x;
+//		number_RGB_XYZ->points[i].y = number_PC->points[i].y;
+//		number_RGB_XYZ->points[i].z = number_PC->points[i].z;
+//		//pPointsRGB->points[i].b = 255;
+//	}
+//
+//	// 显示点云
+//	//boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer1(new pcl::visualization::PCLVisualizer("PCL"));
+//	//viewer1->setBackgroundColor(255, 255, 255);
+//	//pcl::visualization::PointCloudColorHandlerRGBField<pcl::PointXYZRGB> color1(number_RGB_XYZ);
+//	//viewer1->addPointCloud<pcl::PointXYZRGB>(number_RGB_XYZ, color1, "cube2");
+//	//while (!viewer1->wasStopped())
+//	//{
+//	//	viewer1->spinOnce();
+//	//}
+//
+//	cout << number_RGB_XYZ->points.size() << endl;
+//	// 对 number_RGB_XYZ 进行下采样操作
+//	pcl::PointCloud<pcl::PointXYZRGB>::Ptr number_RGB_XYZ_filtered(new pcl::PointCloud<pcl::PointXYZRGB>);// 存储采样后的点云
+//	VoxelGrid<PointXYZRGB> sor;		// 创建滤波器对象
+//	sor.setInputCloud(number_RGB_XYZ);		// 设置需要下采样的点云对象
+//	sor.setLeafSize(10.0f, 10.0f, 1.0f);	// 设置滤波时创建的体素体积为 1cm^3 的立方体
+//	sor.filter(*number_RGB_XYZ_filtered);
+//	cout << number_RGB_XYZ_filtered->points.size() << endl;
+//
+//	pcl::io::savePCDFileASCII("number_RGB_XYZ_filtered.pcd", *number_RGB_XYZ_filtered);
+//	// 显示点云
+//	boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer2(new pcl::visualization::PCLVisualizer("PCL1"));
+//	viewer2->setBackgroundColor(255, 255, 255);
+//	pcl::visualization::PointCloudColorHandlerRGBField<pcl::PointXYZRGB> color2(number_RGB_XYZ);
+//	viewer2->addPointCloud<pcl::PointXYZRGB>(number_RGB_XYZ_filtered, color2, "cube2");
+//	while (!viewer2->wasStopped())
+//	{
+//		viewer2->spinOnce();
+//	}
+//
+//
+//
+//
+//	// 使用每个方向的最大最小尺度进行归一化
+//	double max_x = -10e6, max_y = -10e6, max_z = -10e6;
+//	
+//	double min_x = 10e6, min_y = 10e6, min_z = 10e6;
+//	// 遍历寻找每个方向的最大值
+//	for(size_t idx = 0;idx<number_RGB_XYZ_filtered->points.size();idx++)
+//	{
+//		if (number_RGB_XYZ_filtered->points[idx].x > max_x)
+//			max_x = number_RGB_XYZ_filtered->points[idx].x;
+//
+//		if (number_RGB_XYZ_filtered->points[idx].y > max_y)
+//			max_y = number_RGB_XYZ_filtered->points[idx].y;
+//
+//		if (number_RGB_XYZ_filtered->points[idx].z > max_z)
+//			max_z = number_RGB_XYZ_filtered->points[idx].z;
+//
+//		if (number_RGB_XYZ_filtered->points[idx].x < min_x)
+//			min_x = number_RGB_XYZ_filtered->points[idx].x;
+//
+//		if (number_RGB_XYZ_filtered->points[idx].y < min_y)
+//			min_y = number_RGB_XYZ_filtered->points[idx].y;
+//
+//		if (number_RGB_XYZ_filtered->points[idx].z < min_z)
+//			min_z = number_RGB_XYZ_filtered->points[idx].z;
+//	}
+//	cout << "max_x: " << max_x << "\t" << "max_y: " << max_y << "\t" << "max_z: " << max_z << endl;
+//	cout << "min_x: " << min_x << "\t" << "min_y: " << min_y << "\t" << "min_z: " << min_z << endl;
+//
+//	PointXYZ max_Point, min_Point;
+//	min_Point = PointXYZ(min_x, min_y, min_z);
+//	max_Point = PointXYZ(max_x, max_y, max_z);
+//
+//	// 找到点云中心
+//	PointXYZ cen_point_xyz;
+//	cen_point_xyz = PointXYZ((min_Point.x + max_Point.x) / 2,
+//		(min_Point.y + max_Point.y) / 2,
+//		(min_Point.z + max_Point.z) / 2);
+//
+//	for(size_t idxx = 0;idxx<number_RGB_XYZ_filtered->points.size();idxx++)
+//	{
+//		/*number_RGB_XYZ_filtered->points[idxx].x -= cen_point_xyz.x;
+//		number_RGB_XYZ_filtered->points[idxx].y -= cen_point_xyz.y;
+//		number_RGB_XYZ_filtered->points[idxx].z -= cen_point_xyz.z;*/
+//		// 尺度归一化
+//		normalizetion_p(number_RGB_XYZ_filtered->points[idxx], max_Point, min_Point);
+//		//cout << number_RGB_XYZ_filtered->points[idxx].x << "\t";
+//		cout << number_RGB_XYZ_filtered->points[idxx].z << "\t";
+//	}
+//
+//	// show出来
+//	// 显示点云
+//	boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer3(new pcl::visualization::PCLVisualizer("PCL2"));
+//	viewer3->setBackgroundColor(255, 255, 255);
+//	pcl::visualization::PointCloudColorHandlerRGBField<pcl::PointXYZRGB> color3(number_RGB_XYZ);
+//	viewer3->addPointCloud<pcl::PointXYZRGB>(number_RGB_XYZ_filtered, color3, "cube3");
+//	while (!viewer3->wasStopped())
+//	{
+//		viewer3->spinOnce();
+//	}
+//
+//	pcl::io::savePCDFileASCII("number_RGB_XYZ_filtered_final.pcd", *number_RGB_XYZ_filtered);
+//
+#pragma endregion 处理生成点云
+
+
+	pcl::PointCloud<pcl::PointXYZ>::Ptr number_PC(new pcl::PointCloud<pcl::PointXYZ>);
+	pcl::io::loadPCDFile("ruler_filtered_8 - Cloud.pcd", *number_PC);
+	cout << number_PC->points.size() << endl;
 
 	// 获取到 RGB 信息
 	pcl::PointCloud<pcl::PointXYZRGB>::Ptr number_RGB_XYZ(new pcl::PointCloud<pcl::PointXYZRGB>);
@@ -108,7 +227,7 @@ int main()
 	number_RGB_XYZ->height = number_PC->height;
 	number_RGB_XYZ->resize(number_PC->width * number_PC->height);
 
-	// 将所有点改为蓝色
+
 	for (size_t i = 0; i < number_RGB_XYZ->size(); i++)
 	{
 		number_RGB_XYZ->points[i].x = number_PC->points[i].x;
@@ -127,16 +246,16 @@ int main()
 	//	viewer1->spinOnce();
 	//}
 
-	cout << number_RGB_XYZ->points.size() << endl;
-	// 对 number_RGB_XYZ 进行下采样操作
-	pcl::PointCloud<pcl::PointXYZRGB>::Ptr number_RGB_XYZ_filtered(new pcl::PointCloud<pcl::PointXYZRGB>);// 存储采样后的点云
-	VoxelGrid<PointXYZRGB> sor;		// 创建滤波器对象
-	sor.setInputCloud(number_RGB_XYZ);		// 设置需要下采样的点云对象
-	sor.setLeafSize(10.0f, 10.0f, 10.0f);	// 设置滤波时创建的体素体积为 1cm^3 的立方体
-	sor.filter(*number_RGB_XYZ_filtered);
-	cout << number_RGB_XYZ_filtered->points.size() << endl;
+	//cout << number_RGB_XYZ->points.size() << endl;
+	//// 对 number_RGB_XYZ 进行下采样操作
+	//pcl::PointCloud<pcl::PointXYZRGB>::Ptr number_RGB_XYZ_filtered(new pcl::PointCloud<pcl::PointXYZRGB>);// 存储采样后的点云
+	//VoxelGrid<PointXYZRGB> sor;		// 创建滤波器对象
+	//sor.setInputCloud(number_RGB_XYZ);		// 设置需要下采样的点云对象
+	//sor.setLeafSize(10.0f, 10.0f, 1.0f);	// 设置滤波时创建的体素体积为 1cm^3 的立方体
+	//sor.filter(*number_RGB_XYZ_filtered);
+	//cout << number_RGB_XYZ_filtered->points.size() << endl;
 
-	pcl::io::savePCDFileASCII("number_RGB_XYZ_filtered.pcd", *number_RGB_XYZ_filtered);
+	//pcl::io::savePCDFileASCII("number_RGB_XYZ_filtered.pcd", *number_RGB_XYZ_filtered);
 	//// 显示点云
 	//boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer2(new pcl::visualization::PCLVisualizer("PCL1"));
 	//viewer2->setBackgroundColor(255, 255, 255);
@@ -152,28 +271,28 @@ int main()
 
 	// 使用每个方向的最大最小尺度进行归一化
 	double max_x = -10e6, max_y = -10e6, max_z = -10e6;
-	
+
 	double min_x = 10e6, min_y = 10e6, min_z = 10e6;
 	// 遍历寻找每个方向的最大值
-	for(size_t idx = 0;idx<number_RGB_XYZ_filtered->points.size();idx++)
+	for (size_t idx = 0; idx<number_RGB_XYZ->points.size(); idx++)
 	{
-		if (number_RGB_XYZ_filtered->points[idx].x > max_x)
-			max_x = number_RGB_XYZ_filtered->points[idx].x;
+		if (number_RGB_XYZ->points[idx].x > max_x)
+			max_x = number_RGB_XYZ->points[idx].x;
 
-		if (number_RGB_XYZ_filtered->points[idx].y > max_y)
-			max_y = number_RGB_XYZ_filtered->points[idx].y;
+		if (number_RGB_XYZ->points[idx].y > max_y)
+			max_y = number_RGB_XYZ->points[idx].y;
 
-		if (number_RGB_XYZ_filtered->points[idx].z > max_z)
-			max_z = number_RGB_XYZ_filtered->points[idx].z;
+		if (number_RGB_XYZ->points[idx].z > max_z)
+			max_z = number_RGB_XYZ->points[idx].z;
 
-		if (number_RGB_XYZ_filtered->points[idx].x < min_x)
-			min_x = number_RGB_XYZ_filtered->points[idx].x;
+		if (number_RGB_XYZ->points[idx].x < min_x)
+			min_x = number_RGB_XYZ->points[idx].x;
 
-		if (number_RGB_XYZ_filtered->points[idx].y < min_y)
-			min_y = number_RGB_XYZ_filtered->points[idx].y;
+		if (number_RGB_XYZ->points[idx].y < min_y)
+			min_y = number_RGB_XYZ->points[idx].y;
 
-		if (number_RGB_XYZ_filtered->points[idx].z < min_z)
-			min_z = number_RGB_XYZ_filtered->points[idx].z;
+		if (number_RGB_XYZ->points[idx].z < min_z)
+			min_z = number_RGB_XYZ->points[idx].z;
 	}
 	cout << "max_x: " << max_x << "\t" << "max_y: " << max_y << "\t" << "max_z: " << max_z << endl;
 	cout << "min_x: " << min_x << "\t" << "min_y: " << min_y << "\t" << "min_z: " << min_z << endl;
@@ -188,13 +307,15 @@ int main()
 		(min_Point.y + max_Point.y) / 2,
 		(min_Point.z + max_Point.z) / 2);
 
-	for(size_t idxx = 0;idxx<number_RGB_XYZ_filtered->points.size();idxx++)
+	for (size_t idxx = 0; idxx<number_RGB_XYZ->points.size(); idxx++)
 	{
-		number_RGB_XYZ_filtered->points[idxx].x -= cen_point_xyz.x;
+		/*number_RGB_XYZ_filtered->points[idxx].x -= cen_point_xyz.x;
 		number_RGB_XYZ_filtered->points[idxx].y -= cen_point_xyz.y;
-		number_RGB_XYZ_filtered->points[idxx].z -= cen_point_xyz.z;
+		number_RGB_XYZ_filtered->points[idxx].z -= cen_point_xyz.z;*/
 		// 尺度归一化
-		normalizetion_p(number_RGB_XYZ_filtered->points[idxx], max_Point, min_Point);
+		normalizetion_p(number_RGB_XYZ->points[idxx], max_Point, min_Point);
+		//cout << number_RGB_XYZ_filtered->points[idxx].x << "\t";
+		//cout << number_RGB_XYZ_filtered->points[idxx].z << "\t";
 	}
 
 	// show出来
@@ -202,11 +323,13 @@ int main()
 	boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer3(new pcl::visualization::PCLVisualizer("PCL2"));
 	viewer3->setBackgroundColor(255, 255, 255);
 	pcl::visualization::PointCloudColorHandlerRGBField<pcl::PointXYZRGB> color3(number_RGB_XYZ);
-	viewer3->addPointCloud<pcl::PointXYZRGB>(number_RGB_XYZ_filtered, color3, "cube2");
+	viewer3->addPointCloud<pcl::PointXYZRGB>(number_RGB_XYZ, color3, "cube3");
 	while (!viewer3->wasStopped())
 	{
 		viewer3->spinOnce();
 	}
+
+	pcl::io::savePCDFileASCII("ruler_filtered_8_final.pcd", *number_RGB_XYZ);
 
 
 
@@ -218,5 +341,5 @@ void normalizetion_p(PointXYZRGB &p1, PointXYZ max_p, PointXYZ min_p)
 {
 	p1.x = (p1.x - min_p.x) / (max_p.x - min_p.x);
 	p1.y = (p1.y - min_p.y) / (max_p.y - min_p.y);
-	p1.z = (p1.z - min_p.z) / (max_p.z - min_p.z);
+	p1.z = (p1.z - min_p.z) / float(max_p.z - min_p.z);
 }
